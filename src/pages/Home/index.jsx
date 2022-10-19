@@ -8,6 +8,8 @@ const Home = () => {
   const [users, setUser] = useState([]);
   const [filter, setFilter] = useState("");
 
+  const API = process.env.API;
+
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,13 +18,13 @@ const Home = () => {
   }, []);
 
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:5000/users");
+    const response = await axios.get(API + "users");
     setUser(response.data);
   };
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/users/${id}`);
+      await axios.delete(API + `users/${id}`);
       getUsers();
     } catch (error) {
       console.log(error);

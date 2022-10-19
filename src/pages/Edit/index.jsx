@@ -10,6 +10,7 @@ const Edit = () => {
   const [check, setCheck] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
+  const API = process.env.API;
 
   useEffect(() => {
     getUserById();
@@ -17,7 +18,7 @@ const Edit = () => {
   }, []);
 
   const getUserById = async () => {
-    const response = await axios.get(`http://localhost:5000/users/${id}`);
+    const response = await axios.get(API + `users/${id}`);
     setNama(response.data.nama);
     setHarga(response.data.harga);
     setStock(response.data.stock);
@@ -27,7 +28,7 @@ const Edit = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
+      await axios.patch(API + `users/${id}`, {
         nama,
         harga,
         stock,
