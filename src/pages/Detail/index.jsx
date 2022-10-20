@@ -13,7 +13,6 @@ const Detail = () => {
   const [check, setCheck] = useState("");
   // const navigate = useNavigate();
   const { id } = useParams();
-  const API = process.env.API;
 
   useEffect(() => {
     getUserById();
@@ -21,7 +20,7 @@ const Detail = () => {
   }, []);
 
   const getUserById = async () => {
-    const response = await axios.get(API + `users/${id}`);
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/${id}`);
     setIndex(response.data._id);
     setNama(response.data.nama);
     setHarga(response.data.harga);

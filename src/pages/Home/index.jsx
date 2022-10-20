@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./index.scss";
+
 // import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [users, setUser] = useState([]);
   const [filter, setFilter] = useState("");
 
-  const API = process.env.API;
+  // const apiUrl = process.env.REACT_APP_BASE_URL;
 
   // const navigate = useNavigate();
 
@@ -18,13 +19,13 @@ const Home = () => {
   }, []);
 
   const getUsers = async () => {
-    const response = await axios.get(API + "users");
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users`);
     setUser(response.data);
   };
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(API + `users/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/users/${id}`);
       getUsers();
     } catch (error) {
       console.log(error);

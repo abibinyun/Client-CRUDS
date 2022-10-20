@@ -10,14 +10,12 @@ const Tambah = () => {
   const [stock, setStock] = useState("");
   const [check, setCheck] = useState("");
 
-  const API = process.env.API;
-
   const navigate = useNavigate();
 
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(API + "users", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/users`, {
         nama,
         harga,
         stock,
